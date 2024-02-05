@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Inter } from "next/font/google";
 import "./styles.css";
 import "./globals.css";
+import SideBar from "./components/SideBar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +19,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{ fontFamily: "Whitney" }}>{children}</body>
+      <body style={{ fontFamily: "Whitney" }}>
+        <div className="flex text-white h-screen">
+          <SideBar />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
