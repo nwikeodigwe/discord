@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { useParams } from "next/navigation";
 import * as Icons from "./icons";
 import NavLink from "./NavLink";
 
@@ -12,7 +12,7 @@ const servers = [
 ];
 
 export default function SideBar() {
-  const router = usePathname();
+  const params = useParams<{ sid: string; cid: string }>();
   return (
     <div className="bg-gray-900 p-3 space-y-2 overflow-y-scroll">
       <NavLink href="/">
@@ -20,7 +20,11 @@ export default function SideBar() {
       </NavLink>
       <hr className="border-t-white/[.06] border-t-2 rounded mx-2" />
       {servers.map((server) => (
-        <NavLink key={server.id} href={`/servers/${server.id}`}>
+        <NavLink
+          key={server.id}
+          active={+params.sid === +server.id}
+          href={`/servers/${server.id}/channels/1`}
+        >
           <Image
             src={`/servers/${server.img}`}
             alt="Tailwind"
