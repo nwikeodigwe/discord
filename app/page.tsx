@@ -1,5 +1,7 @@
 import Link from "next/link";
 import * as Icon from "./components/icons";
+import Channels from "./components/Channels";
+import { data } from "../data";
 
 export default function Home() {
   return (
@@ -13,19 +15,22 @@ export default function Home() {
           Tailwind CSS
           <Icon.Chevron className="w-[18px] h-[18px] ml-auto opacity-80" />
         </div>
-        <div className="flex-1 overflow-y-scroll text-gray-300 mt-[17px]">
-          <div className="space-y-[0.5px]">
-            <div className="flex items-center p-2 mx-2  hover:bg-gray-550/[0.16] transition-all rounded hover:text-gray-100 group">
-              <Icon.Book className="w-4 h-4 mr-1.5 text-gray-400" />
-              welcome
-              <Icon.AddPerson className="w-4 h-4 text-gray-200 ml-auto opacity-0 group-hover:opacity-100" />
+        <div className="flex-1 overflow-y-scroll font-medium text-gray-300 mt-3 space-y-[21px]">
+          {data[0].categories.map((category) => (
+            <div key={category.id}>
+              {category.label && (
+                <div className="px-1 font-title flex items-center uppercase text-xs tracking-wide">
+                  <Icon.Arrow className="w-3 h-3" />
+                  {category.label}
+                </div>
+              )}
+              <div className="space-y-[0.5px] mt-[5px]">
+                {category.channels.map((channel) => (
+                  <Channels channel={channel} key={channel.id} />
+                ))}
+              </div>
             </div>
-            <div className="flex items-center p-2 mx-2  hover:bg-gray-550/[0.16] transition-all rounded hover:text-gray-100 group">
-              <Icon.Speakerphone className="w-4 h-4 mr-1.5 text-gray-400" />
-              anouncements
-              <Icon.AddPerson className="w-4 h-4 text-gray-200 ml-auto opacity-0 group-hover:opacity-100" />
-            </div>
-          </div>
+          ))}
         </div>
       </div>
       <div className="bg-gray-700 flex flex-1  flex-col">
