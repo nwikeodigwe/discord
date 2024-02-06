@@ -13,7 +13,20 @@ export default function Home() {
           Tailwind CSS
           <Icon.Chevron className="w-[18px] h-[18px] ml-auto opacity-80" />
         </div>
-        <div className="p-3 flex-1 overflow-y-scroll space-y-2 text-gray-300"></div>
+        <div className="flex-1 overflow-y-scroll text-gray-300 mt-[17px]">
+          <div className="space-y-[0.5px]">
+            <div className="flex items-center p-2 mx-2  hover:bg-gray-550/[0.16] transition-all rounded hover:text-gray-100 group">
+              <Icon.Book className="w-4 h-4 mr-1.5 text-gray-400" />
+              welcome
+              <Icon.AddPerson className="w-4 h-4 text-gray-200 ml-auto opacity-0 group-hover:opacity-100" />
+            </div>
+            <div className="flex items-center p-2 mx-2  hover:bg-gray-550/[0.16] transition-all rounded hover:text-gray-100 group">
+              <Icon.Speakerphone className="w-4 h-4 mr-1.5 text-gray-400" />
+              anouncements
+              <Icon.AddPerson className="w-4 h-4 text-gray-200 ml-auto opacity-0 group-hover:opacity-100" />
+            </div>
+          </div>
+        </div>
       </div>
       <div className="bg-gray-700 flex flex-1  flex-col">
         <div className="px-3 h-12 flex items-center shadow-md">General</div>
