@@ -1,15 +1,71 @@
+import { useParams } from "next/navigation";
+import * as Icon from "../components/icons";
+import { data } from "../../data";
+
 export default function MessageBar() {
+  const params = useParams<{ sid: string; cid: string }>();
+  const server = data[0];
+  const channel = server.categories
+    .map((c) => c.channels)
+    .flat()
+    .find((channel) => +channel.id === +params.cid);
   return (
-    <div className="bg-gray-700 flex flex-1  flex-col">
-      <div className="px-3 h-12 flex items-center shadow-md">General</div>
-      <div className="p-3 flex-1 overflow-y-scroll space-y-2 text-gray-100">
+    <div className="flex flex-col flex-1 flex-shrink min-w-0 bg-gray-700">
+      <div className="flex items-center h-12 px-2 shadow-sm">
+        <div className="flex items-center">
+          <Icon.Hashtag className="w-6 h-6 mx-2 font-semibold text-gray-400" />
+          <span className="mr-2 text-white font-title whitespace-nowrap">
+            {channel?.label}
+          </span>
+        </div>
+
+        {channel?.description && (
+          <>
+            <div className="w-px h-6 mx-2 bg-white/[.06]"></div>
+            <div className="mx-2 text-sm font-medium text-gray-200 truncate">
+              {channel?.description}
+            </div>
+          </>
+        )}
+
+        <div className="flex items-center ml-auto">
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.HashtagWithSpeechBubble className="w-6 h-6 mx-2" />
+          </button>
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.Bell className="w-6 h-6 mx-2" />
+          </button>
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.Pin className="w-6 h-6 mx-2" />
+          </button>
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.People className="w-6 h-6 mx-2" />
+          </button>
+          <div className="mx-2 relative">
+            <input
+              type="text"
+              className="bg-gray-900 rounded border-none h-6 w-36 text-sm font-medium placeholder-gray-200 px-1.5"
+              placeholder="Search"
+            />
+            <div className="absolute right-0 inset-y-0 flex items-center">
+              <Icon.Spyglass className="w-4 h-4 mr-1 text-gray-400" />
+            </div>
+          </div>
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.Inbox className="w-6 h-6 mx-2" />
+          </button>
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.QuestionCircle className="w-6 h-6 mx-2" />
+          </button>
+        </div>
+      </div>
+      <div className="flex-1 p-3 space-y-4 overflow-y-scroll">
         {[...Array(40)].map((_, i) => (
           <p key={i}>
             Message {i}. Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. Distinctio sunt hic nulla nesciunt quia perferendis explicabo
-            a voluptas saepe eum odit magnam aspernatur, molestiae aut. Officia
-            dolorem assumenda neque, facere sequi voluptatem quo, temporibus
-            illum laudantium alias impedit unde magni!
+            elit. Vel saepe laudantium sed reprehenderit incidunt! Hic rem quos
+            reiciendis, fugit quae ratione beatae veniam laborum voluptatem,
+            iusto dolorum, voluptates suscipit quia.
           </p>
         ))}
       </div>
