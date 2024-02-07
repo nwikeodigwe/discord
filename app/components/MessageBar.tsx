@@ -26,14 +26,25 @@ export default function MessageBar() {
 
         {channel.description && (
           <>
-            <div className="w-px h-6 mx-2 bg-white/[.06]"></div>
-            <div className="mx-2 text-sm font-medium text-gray-200 truncate">
+            <div className="hidden md:block w-px h-6 mx-2 bg-white/[.06]"></div>
+            <div className="hidden md:block mx-2 text-sm font-medium text-gray-200 truncate">
               {channel.description}
             </div>
           </>
         )}
+        {/* Mobile buttons */}
+        <div className="flex items-center ml-auto md:hidden">
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.HashtagWithSpeechBubble className="w-6 h-6 mx-2" />
+          </button>
 
-        <div className="flex items-center ml-auto">
+          <button className="text-gray-200 hover:text-gray-100">
+            <Icon.People className="w-6 h-6 mx-2" />
+          </button>
+        </div>
+
+        {/* Desktop buttons */}
+        <div className="md:flex items-center ml-auto hidden">
           <button className="text-gray-200 hover:text-gray-100">
             <Icon.HashtagWithSpeechBubble className="w-6 h-6 mx-2" />
           </button>

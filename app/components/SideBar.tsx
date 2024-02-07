@@ -9,7 +9,7 @@ import { data } from "../../data";
 export default function SideBar() {
   const params = useParams<{ sid: string; cid: string }>();
   return (
-    <div className="bg-gray-900 p-3 space-y-2 overflow-y-scroll">
+    <div className="hidden md:block bg-gray-900 p-3 space-y-2 overflow-y-scroll">
       <NavLink href="/">
         <Icons.Discord className="h-5 w-7" />
       </NavLink>

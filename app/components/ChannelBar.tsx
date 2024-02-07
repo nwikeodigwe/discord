@@ -19,7 +19,7 @@ export default function ChannelBar() {
   };
 
   return (
-    <div className="bg-gray-800 w-60 flex flex-col">
+    <div className="bg-gray-800 w-60 md:flex flex-col hidden">
       <div className="px-4 shadow-md flex items-center font-title font-semibold h-12 text-[15px] hover:bg-gray-550/[0.16] transition">
         <div className="relative w-4 h-4 mr-1">
           <Icon.Verified className="w-4 h-4 text-gray-550 absolute" />
