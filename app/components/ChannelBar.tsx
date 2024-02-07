@@ -2,11 +2,13 @@ import * as Icon from "./icons";
 import Channels from "./Channels";
 import { data } from "../../data";
 import { useState } from "react";
+import { useParams } from "next/navigation";
+import { Channel } from "./Channel";
 
 export default function ChannelBar() {
   const [closedCategories, setClosedCategories] = useState<any>([]);
-
-  console.log(closedCategories);
+  const params = useParams<{ sid: string; cid: string }>();
+  const server = data.find((server) => +server.id === +params.sid);
 
   const togglecategory = (categoryId: any) => {
     setClosedCategories((closedCategories: string[]) => {
@@ -27,7 +29,7 @@ export default function ChannelBar() {
         <Icon.Chevron className="w-[18px] h-[18px] ml-auto opacity-80" />
       </div>
       <div className="flex-1 overflow-y-scroll font-medium text-gray-300 mt-3 space-y-[21px]">
-        {data[0].categories.map((category) => (
+        {server?.categories.map((category) => (
           <div key={category.id}>
             {category.label && (
               <div

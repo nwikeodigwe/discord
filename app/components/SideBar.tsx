@@ -4,12 +4,7 @@ import Image from "next/image";
 import { useParams } from "next/navigation";
 import * as Icons from "./icons";
 import NavLink from "./NavLink";
-
-const servers = [
-  { id: "1", img: "tailwind.png" },
-  { id: "2", img: "next.png" },
-  { id: "3", img: "mirage.png" },
-];
+import { data } from "../../data";
 
 export default function SideBar() {
   const params = useParams<{ sid: string; cid: string }>();
@@ -19,11 +14,11 @@ export default function SideBar() {
         <Icons.Discord className="h-5 w-7" />
       </NavLink>
       <hr className="border-t-white/[.06] border-t-2 rounded mx-2" />
-      {servers.map((server) => (
+      {data.map((server) => (
         <NavLink
           key={server.id}
           active={+params.sid === +server.id}
-          href={`/servers/${server.id}/channels/1`}
+          href={`/servers/${server.id}/channels/${server.categories[0].channels[0].id}`}
         >
           <Image
             src={`/servers/${server.img}`}

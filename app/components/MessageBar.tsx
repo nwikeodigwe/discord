@@ -1,33 +1,19 @@
+"use client";
 import { useParams } from "next/navigation";
 import * as Icon from "../components/icons";
 import MessageWithUser from "./MessageWithUser";
 import Message from "./Message";
 import { data } from "../../data";
-
-interface Channel {
-  id: number;
-  label: string;
-  icon: string;
-  messages: {
-    id: number;
-    user: string;
-    avatarUrl: string;
-    date: string;
-    text: string;
-  }[];
-  description?: undefined;
-  unread?: undefined;
-}
+import { Channel } from "./Channel";
 
 export default function MessageBar() {
   const params = useParams<{ sid: string; cid: string }>();
-  const server = data[0];
-  const channel: Channel = server.categories
+  const server = data.find((server) => +server.id === +params.sid);
+  const channel: Channel = server?.categories
     .map((c) => c.channels)
     .flat()
-    .find((channel) => +channel.id === +params.cid);
-
-  console.log(channel.unread);
+    .find((channel) => +channel.id === +params.cid) as Channel;
+  console.log(channel);
   return (
     <div className="flex flex-col flex-1 flex-shrink min-w-0 bg-gray-700">
       <div className="flex items-center h-12 px-2 shadow-sm">
